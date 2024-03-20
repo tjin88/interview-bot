@@ -14,7 +14,7 @@ client = OpenAI(api_key=os.getenv("OPEN_AI_KEY"), organization=os.getenv("OPEN_A
 
 elevenlabs_key = os.getenv("ELEVENLABS_KEY")
 
-CHATBOT_ROLE = "You are interviewing the user for a software engineering intern position. Ask short behavioural and technical questions that are relevant to a junior level developer. Your name is Greg. The user is Tristan. Keep responses under 35 words and be funny sometimes."
+CHATBOT_ROLE = "You are interviewing the user for a software engineering intern position. Ask short behavioural and technical questions that are relevant to a junior level developer. Your name is Greg. The user is Tristan. Keep responses under 35 words and occasionally be funny."
 
 app = FastAPI()
 
@@ -46,6 +46,7 @@ async def post_audio(file: UploadFile):
     user_message = transcribe_audio(file)
     # user_message = 'Hi. Thank you for meeting with me.'
     chat_response = get_chat_response(user_message)
+    # chat_response = "Hello Felix. Thank you for meeting with me!"
     audio_output = text_to_speech(chat_response)
 
     def iterfile():
